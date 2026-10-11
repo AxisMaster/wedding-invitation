@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: rsvp
+    description: Wedding invitation responses
 paths:
   /healthz:
     get:
@@ -24,6 +26,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /rsvp:
+    post:
+      operationId: submitRsvp
+      tags: [rsvp]
+      summary: Submit a wedding RSVP
+      description: Records an invitation response when storage is configured, or acknowledges it in demo mode.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RsvpInput"
+      responses:
+        "200":
+          description: RSVP received
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RsvpReceipt"
+        "400":
+          description: Invalid RSVP
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +60,40 @@ components:
           type: string
       required:
         - status
+    RsvpInput:
+      type: object
+      additionalProperties: false
+      properties:
+        fullName:
+          type: string
+          minLength: 1
+          maxLength: 120
+        attendance:
+          type: string
+          enum: [yes, no, maybe]
+        guests:
+          type: integer
+          minimum: 1
+          maximum: 6
+        message:
+          type: string
+          maxLength: 500
+        website:
+          type: string
+          maxLength: 200
+      required: [fullName, attendance, guests, website]
+    RsvpReceipt:
+      type: object
+      properties:
+        received:
+          type: boolean
+        stored:
+          type: boolean
+      required: [received, stored]
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+      required: [error]
 
