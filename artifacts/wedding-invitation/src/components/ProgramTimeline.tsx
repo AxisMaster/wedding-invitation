@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { Flower2, Heart, Music2, Utensils } from 'lucide-react';
+import { Heart, Utensils } from 'lucide-react';
 import { invitationConfig, type Language } from '../invitation.config';
 import { Botanical } from './Botanical';
 
-const iconByName = { tea: Flower2, heart: Heart, dinner: Utensils, music: Music2 } as const;
+const iconByName = { dinner: Utensils } as const;
 
 export function ProgramTimeline({ language }: { language: Language }) {
   const copy = invitationConfig.copy;

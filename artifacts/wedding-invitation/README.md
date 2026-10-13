@@ -5,19 +5,19 @@ A mobile-first, single-page wedding invitation in English and Urdu. The opening 
 ## Edit the invitation
 
 1. Open `src/invitation.config.ts` and replace both partners’ names, parents’ names and profession lines. Keep an `en` and `ur` value for every guest-facing string.
-2. Replace `weddingDate` and each event’s ISO `datetime`, including its timezone offset. The displayed wedding date and RSVP deadline labels are formatted from those ISO values. Review the event times, descriptions and RSVP deadline together.
+2. Replace `weddingDate` and the single Walima event’s ISO `datetime`, including its timezone offset. The displayed wedding date, program time, calendar download and RSVP deadline labels are formatted from those ISO values. Review the Walima time, description and RSVP deadline together.
 3. Update the venue name, full address and `mapsUrl`, plus the shuttle and accommodation notes and booking code.
 4. Update `meta` and replace `public/og-invitation.svg` if the social preview should use different artwork. The invitation is deliberately marked `noindex`.
 
-The current couple, family, travel and booking details are illustrative placeholders. The wedding date is set to January 9, 2027 (90 days after the supplied October 11, 2026 project date); replace it before sharing the invitation.
+The current couple, family, travel and booking details are illustrative placeholders. The wedding date is an example and must be replaced with the confirmed date before sharing.
 
 ### Music and original artwork
 
-No music file was supplied, so the invitation uses a quiet synthesized Web Audio pad after the visitor opens it. To use a recording, add it as `public/audio/wedding-theme.mp3`, set `music.audioFilePath` to `/audio/wedding-theme.mp3`, and change `music.placeholder` to `false`. Playback still begins only after a visitor gesture; the top-right control mutes or resumes it. The botanical vines, envelope seal and social preview are local, original SVG/CSS artwork. Local WOFF2 fonts are bundled from Google Fonts: Great Vibes, Cormorant Garamond, Playfair Display and Noto Nastaliq Urdu; each is distributed under the SIL Open Font License.
+No music file was supplied, so the invitation uses a quiet synthesized Web Audio pad after the visitor opens it. To use a recording, add it as `public/audio/wedding-theme.mp3`, set `music.audioFilePath` to `/audio/wedding-theme.mp3`, and change `music.placeholder` to `false`. Playback still begins only after a visitor gesture; the top-right control mutes or resumes it. The botanical vines, embossed leaf texture, garden fountain, envelope and seal are original local SVG/CSS artwork; no attached reference image is used as a site asset. Local WOFF2 fonts are bundled from Google Fonts: Great Vibes, Cormorant Garamond, Playfair Display and Noto Nastaliq Urdu; each is distributed under the SIL Open Font License.
 
 ## RSVP storage
 
-The frontend posts to `/api/rsvp` through the shared API client. In demo mode, the API validates the reply, logs only attendance and guest count, returns success with `stored: false`, and does **not** retain the guest’s name or message.
+The frontend posts the guest name, attendance choice and party size to `/api/rsvp` through the shared API client. In demo mode, the API logs only attendance and guest count, returns success with `stored: false`, and does **not** retain the guest’s name. The form intentionally has no free-text message field.
 
 To save replies in Supabase:
 
@@ -29,12 +29,13 @@ To save replies in Supabase:
      full_name text not null check (char_length(full_name) between 1 and 120),
      attendance text not null check (attendance in ('yes', 'no', 'maybe')),
      guests integer not null check (guests between 1 and 6),
-     message text check (message is null or char_length(message) <= 500),
      created_at timestamptz not null default now()
    );
 
    alter table public.wedding_rsvps enable row level security;
    ```
+
+   If you already created the earlier sample table with an optional `message` column, you can leave it in place; the invitation no longer collects or writes message text.
 
 2. Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` as **server-side secrets** for the API service. Never add the service-role key to the Vite app or a `VITE_` variable. Set the non-secret `CORS_ORIGIN` on the API to the invitation site origin (comma-separated if needed). The API writes through Supabase’s REST endpoint with the service-role key.
 3. Submit a test RSVP and confirm the API returns `stored: true` and the row appears in `wedding_rsvps`. With neither setting present, demo acknowledgements intentionally remain unstored; if only one setting is present, the API reports a configuration error.

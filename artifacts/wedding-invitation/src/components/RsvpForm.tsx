@@ -7,12 +7,12 @@ export function RsvpForm({language}:{language:Language}){
  const c=invitationConfig.copy;const mutation=useSubmitRsvp();
  const numeralLocale=language==='ur'?invitationConfig.formatting.urduLocale:'en-US';
  const [fullName,setFullName]=useState('');const [attendance,setAttendance]=useState<RsvpInputAttendance|''>('');
- const [guests,setGuests]=useState('1');const [message,setMessage]=useState('');const [website,setWebsite]=useState('');
+  const [guests,setGuests]=useState('1');const [website,setWebsite]=useState('');
  const [errors,setErrors]=useState({name:false,attendance:false});const [receipt,setReceipt]=useState<RsvpReceipt|null>(null);const [error,setError]=useState('');
  const submit=(event:FormEvent<HTMLFormElement>)=>{event.preventDefault();setError('');setReceipt(null);
   const next={name:!fullName.trim()||fullName.trim().length>120,attendance:!attendance};setErrors(next);
   if(next.name||next.attendance){setError(c.validationError[language]);return;}
-  const data:RsvpInput={fullName:fullName.trim(),attendance:attendance as RsvpInputAttendance,guests:Number(guests),...(message.trim()?{message:message.trim().slice(0,500)}:{}),website:website.slice(0,200)};
+   const data:RsvpInput={fullName:fullName.trim(),attendance:attendance as RsvpInputAttendance,guests:Number(guests),website:website.slice(0,200)};
   mutation.mutate({data},{onSuccess:(value)=>setReceipt(value),onError:()=>setError(c.submitError[language])});
  };
  return <section id="rsvp" data-testid="section-rsvp" className="px-6 py-14">
@@ -23,7 +23,6 @@ export function RsvpForm({language}:{language:Language}){
      {(['yes','no','maybe'] as const).map((value,index)=><label key={value} className="flex cursor-pointer items-center gap-3 rounded-xl border border-[#6f7f5b]/25 bg-[#fffaf3]/65 px-3 py-2.5 text-[15px]"><input data-testid={`radio-rsvp-${value}`} type="radio" name="attendance" value={value} checked={attendance===value} required={index===0} onChange={()=>setAttendance(value)} className="accent-[#3e4a32]"/><span className={language==='ur'?'urdu-copy':''}>{c[value][language]}</span></label>)}
     </div>{errors.attendance&&<p id="rsvp-attendance-error" className="mt-1 text-[13px] text-[#9a3e31]">{c.requiredAttendance[language]}</p>}</fieldset>
     <div><label htmlFor="rsvp-guests" className="mb-1 block text-[15px] text-[#3e4a32]">{c.guests[language]}</label><select id="rsvp-guests" data-testid="select-rsvp-guests" className="form-control" value={guests} onChange={e=>setGuests(e.target.value)}>{[1,2,3,4,5,6].map(n=><option value={n} key={n}>{new Intl.NumberFormat(numeralLocale).format(n)}</option>)}</select></div>
-    <div><label htmlFor="rsvp-message" className="mb-1 block text-[15px] text-[#3e4a32]">{c.message[language]}</label><textarea id="rsvp-message" data-testid="input-rsvp-message" className="form-control min-h-24 resize-y" maxLength={500} placeholder={c.messagePlaceholder[language]} value={message} onChange={e=>setMessage(e.target.value)} /><span className="mt-1 block text-end text-[12px] text-[#73665e]">{new Intl.NumberFormat(numeralLocale).format(message.length)}/500</span></div>
     <div className="absolute top-auto h-px w-px overflow-hidden" style={{insetInlineStart:'-10000px'}} aria-hidden="true"><label htmlFor="website">{c.honeypotLabel[language]}</label><input id="website" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={e=>setWebsite(e.target.value)}/></div>
    {error&&<p role="alert" data-testid="status-rsvp-error" className="rounded-lg bg-[#f5e1dc] px-3 py-2 text-[14px] text-[#87372d]">{error}</p>}
     <button type="submit" disabled={mutation.isPending} aria-busy={mutation.isPending} data-testid="button-submit-rsvp" className="w-full rounded-full bg-[#3e4a32] px-6 py-3 text-[16px] tracking-wide text-[#fff8ed] shadow-md transition-colors hover:bg-[#526447] disabled:cursor-wait disabled:opacity-65">{mutation.isPending?c.sending[language]:c.submit[language]}</button>

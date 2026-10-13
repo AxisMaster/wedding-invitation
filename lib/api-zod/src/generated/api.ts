@@ -25,8 +25,6 @@ export const submitRsvpBodyFullNameMax = 120;
 
 export const submitRsvpBodyGuestsMax = 6;
 
-export const submitRsvpBodyMessageMax = 500;
-
 export const submitRsvpBodyWebsiteMax = 200;
 
 
@@ -35,7 +33,6 @@ export const SubmitRsvpBody = zod.object({
   "fullName": zod.string().min(1).max(submitRsvpBodyFullNameMax),
   "attendance": zod.enum(['yes', 'no', 'maybe']),
   "guests": zod.number().int().min(1).max(submitRsvpBodyGuestsMax),
-  "message": zod.string().max(submitRsvpBodyMessageMax).optional(),
   "website": zod.string().max(submitRsvpBodyWebsiteMax)
 })
 

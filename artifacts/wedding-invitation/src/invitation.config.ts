@@ -21,7 +21,7 @@ const partner2 = {
   profession: { en: 'Botanist', ur: 'ماہرِ نباتات' },
 };
 
-const weddingDate = '2027-01-09T17:00:00+05:30';
+const weddingDate = '2027-01-09T19:00:00+05:30';
 const formatting = {
   timeZone: 'Asia/Kolkata',
   westernNumerals: true,
@@ -48,44 +48,14 @@ const accommodation = {
 
 const events = [
   {
-    id: 'welcome-tea',
-    title: { en: 'Welcome & garden tea', ur: 'استقبال اور باغ میں چائے' },
-    datetime: '2027-01-09T17:00:00+05:30',
+    id: 'walima',
+    title: { en: 'Walima', ur: 'ولیمہ' },
+    datetime: weddingDate,
     description: {
-      en: 'Arrive, settle in, and share a cup of tea among the winter flowers.',
-      ur: 'تشریف لائیں، آرام سے بیٹھیں اور سردیوں کے پھولوں میں چائے کا لطف اٹھائیں۔',
-    },
-    icon: 'tea',
-  },
-  {
-    id: 'ceremony',
-    title: { en: 'The ceremony', ur: 'نکاح کی تقریب' },
-    datetime: '2027-01-09T17:45:00+05:30',
-    description: {
-      en: 'A quiet, joyful moment with our families and closest friends.',
-      ur: 'اپنے خاندان اور قریبی دوستوں کے ساتھ ایک پُرمسرت لمحہ۔',
-    },
-    icon: 'heart',
-  },
-  {
-    id: 'dinner',
-    title: { en: 'Dinner beneath the lights', ur: 'چراغوں تلے عشائیہ' },
-    datetime: '2027-01-09T19:00:00+05:30',
-    description: {
-      en: 'A long table, good food, and time to catch up.',
-      ur: 'لمبی میز، اچھا کھانا اور ایک دوسرے سے باتوں کا وقت۔',
+      en: 'An evening reception with dinner, music, and our loved ones.',
+      ur: 'اپنوں کے ساتھ عشائیے، موسیقی اور خوشی کی ایک شام۔',
     },
     icon: 'dinner',
-  },
-  {
-    id: 'music-and-dancing',
-    title: { en: 'Music, cake & dancing', ur: 'موسیقی، کیک اور رقص' },
-    datetime: '2027-01-09T20:30:00+05:30',
-    description: {
-      en: 'Stay for a song, a slice of cake, and the last dance.',
-      ur: 'ایک گیت، کیک کا ٹکڑا اور آخری رقص کے لیے ہمارے ساتھ رہیے۔',
-    },
-    icon: 'music',
   },
 ] as const;
 
@@ -137,28 +107,28 @@ const deadlineLabel = {
   }).format(deadlineValue),
 };
 const title = {
-  en: `${partner1.shortName.en} & ${partner2.shortName.en} — Wedding Celebration`,
-  ur: `${partner1.shortName.ur} اور ${partner2.shortName.ur} — شادی کی تقریب`,
+  en: `${partner1.shortName.en} & ${partner2.shortName.en} — Walima Celebration`,
+  ur: `${partner1.shortName.ur} اور ${partner2.shortName.ur} — تقریبِ ولیمہ`,
 };
 const eventLocation = {
   en: `${venue.name.en}, ${venue.address.en}`,
   ur: `${venue.name.ur}، ${venue.address.ur}`,
 };
 const eventDescription = {
-  en: `Welcome tea at ${formatTime(events[0].datetime, 'en-US')}, ceremony at ${formatTime(events[1].datetime, 'en-US')}, and dinner at ${formatTime(events[2].datetime, 'en-US')}. Kindly reply by ${deadlineLabel.en}.`,
-  ur: `استقبال ${formatTime(events[0].datetime, 'ur-PK-u-nu-latn')}، نکاح ${formatTime(events[1].datetime, 'ur-PK-u-nu-latn')} اور عشائیہ ${formatTime(events[2].datetime, 'ur-PK-u-nu-latn')}۔ براہِ کرم ${deadlineLabel.ur} تک جواب دیں۔`,
+  en: `${events[0].title.en} begins at ${formatTime(events[0].datetime, 'en-US')}. ${events[0].description.en} Kindly reply by ${deadlineLabel.en}.`,
+  ur: `${events[0].title.ur} ${formatTime(events[0].datetime, urduLocale)} بجے شروع ہوگا۔ ${events[0].description.ur} براہِ کرم ${deadlineLabel.ur} تک جواب دیں۔`,
 };
 
 export const invitationConfig = {
   meta: {
-    title: { en: 'Aanya & Zayd — A day to remember', ur: 'آنیہ اور زید — ایک یادگار دن' },
+    title: { en: 'Aanya & Zayd — Walima Celebration', ur: 'آنیہ اور زید — تقریبِ ولیمہ' },
     description: {
-      en: 'With full hearts, Aanya Rahman and Zayd Khan invite you to celebrate their wedding.',
-      ur: 'آنیہ رحمان اور زید خان آپ کو اپنی شادی کی خوشی میں شریک ہونے کی دعوت دیتے ہیں۔',
+      en: 'With full hearts, Aanya Rahman and Zayd Khan invite you to celebrate their Walima.',
+      ur: 'آنیہ رحمان اور زید خان آپ کو اپنی تقریبِ ولیمہ کی خوشی میں شریک ہونے کی دعوت دیتے ہیں۔',
     },
     ogAlt: {
-      en: 'Botanical wedding invitation for Aanya and Zayd',
-      ur: 'آنیہ اور زید کی شادی کا نباتاتی دعوت نامہ',
+      en: 'Botanical Walima invitation for Aanya and Zayd',
+      ur: 'آنیہ اور زید کی تقریبِ ولیمہ کا نباتاتی دعوت نامہ',
     },
   },
   partner1,
@@ -202,7 +172,7 @@ export const invitationConfig = {
       en: 'request the pleasure of your company',
       ur: 'آپ کی شرکت ہمارے لیے باعثِ مسرت ہوگی',
     },
-    weddingOf: { en: 'at the wedding celebration of', ur: 'کی شادی کی خوشی میں' },
+    weddingOf: { en: 'at the Walima celebration of', ur: 'کی تقریبِ ولیمہ میں' },
     heroEyebrow: { en: "We're getting married", ur: 'ہم شادی کر رہے ہیں' },
     parentsA: partner1.parents,
     parentsZ: partner2.parents,
@@ -232,10 +202,10 @@ export const invitationConfig = {
     seconds: { en: 'seconds', ur: 'سیکنڈ' },
     pastDate: { en: 'Today is the day', ur: 'آج ہماری شادی کا دن ہے' },
     married: { en: 'Married', ur: 'شادی شدہ' },
-    programTitle: { en: 'An evening together', ur: 'ایک یادگار شام' },
+    programTitle: { en: 'The Walima', ur: 'ولیمہ' },
     programIntro: {
-      en: 'A few lovely moments, shared in good company.',
-      ur: 'اپنوں کے ساتھ چند خوبصورت لمحات۔',
+      en: 'One evening to gather, dine, and celebrate together.',
+      ur: 'ایک شام، ایک ساتھ جمع ہونے، کھانے اور خوشی منانے کے لیے۔',
     },
     venueTitle: { en: 'Find your way to us', ur: 'ہم تک پہنچنے کا راستہ' },
     venueName: venue.name,
@@ -263,8 +233,6 @@ export const invitationConfig = {
     no: { en: 'Regretfully declines', ur: 'معذرت کے ساتھ شرکت نہیں کر سکیں گے' },
     maybe: { en: 'Replying soon', ur: 'جلد جواب دیں گے' },
     guests: { en: 'How many in your party?', ur: 'آپ کے ساتھ کتنے افراد ہوں گے؟' },
-    message: { en: 'A note for the couple (optional)', ur: 'جوڑے کے لیے پیغام (اختیاری)' },
-    messagePlaceholder: { en: 'Leave a little love…', ur: 'اپنی محبت کا پیغام لکھیں…' },
     submit: { en: 'Send our reply', ur: 'اپنا جواب بھیجیں' },
     sending: { en: 'Sending your reply', ur: 'آپ کا جواب بھیجا جا رہا ہے' },
     requiredName: { en: 'Please enter your full name.', ur: 'براہِ کرم اپنا پورا نام درج کریں۔' },

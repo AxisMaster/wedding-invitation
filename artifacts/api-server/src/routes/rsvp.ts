@@ -14,7 +14,7 @@ router.post("/rsvp", async (req, res): Promise<void> => {
     return;
   }
 
-  const { fullName, attendance, guests, message, website } = parsed.data;
+  const { fullName, attendance, guests, website } = parsed.data;
 
   // Silently accept honeypot submissions without storing or logging their data.
   if (website.trim()) {
@@ -55,7 +55,6 @@ router.post("/rsvp", async (req, res): Promise<void> => {
           full_name: fullName.trim(),
           attendance,
           guests,
-          message: message?.trim() || null,
         }),
       },
     );

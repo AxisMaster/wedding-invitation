@@ -167,13 +167,82 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .font-editorial { font-family: 'Playfair Display', 'Palatino Linotype', Georgia, serif; }
 .small-caps-label { font-family:'Playfair Display', Georgia, serif; font-variant-caps:all-small-caps; letter-spacing:.15em; }
 .invitation-shell {
+  isolation: isolate;
   position: relative;
   width: min(100%, 480px);
   min-height: 100dvh;
   margin-inline: auto;
   overflow: clip;
   background: var(--paper);
+  background-image: radial-gradient(ellipse at 50% 8%, rgba(255,255,255,.35), transparent 56%),
+    url('/textures/olive-emboss.svg');
+  background-size: 100% 100%, 190px 190px;
   box-shadow: 0 24px 90px rgba(77, 48, 38, .22), 0 2px 8px rgba(77, 48, 38, .1);
+}
+.invitation-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .06;
+  background: url('/textures/olive-emboss.svg') repeat;
+  background-size: 190px 190px;
+}
+.invitation-shell > main { position: relative; z-index: 1; }
+.embossed-green-paper {
+  background-color: #5b6a4a;
+  background-image:
+    radial-gradient(ellipse at 50% -5%, rgba(243,219,169,.16), transparent 62%),
+    url('/textures/olive-emboss.svg'),
+    linear-gradient(148deg, #687755 0%, #586847 52%, #4d5d40 100%);
+  background-size: 100% 100%, 124px 124px, 100% 100%;
+}
+.embossed-envelope {
+  background-color: #879477;
+  background-image:
+    linear-gradient(145deg, rgba(255,255,255,.22), transparent 44%, rgba(48,61,39,.12)),
+    url('/textures/olive-emboss.svg'),
+    linear-gradient(135deg, #a0a98f, #7b896e);
+  background-size: 100% 100%, 116px 116px, 100% 100%;
+  box-shadow: inset 0 0 0 1px rgba(241,226,184,.5), 0 22px 45px rgba(35,47,29,.34);
+}
+.embossed-flap {
+  background-color: #9ca78e;
+  background-image:
+    linear-gradient(145deg, rgba(255,255,255,.26), transparent 60%, rgba(48,61,39,.11)),
+    url('/textures/olive-emboss.svg'),
+    linear-gradient(155deg, #b0b99f, #8b987d);
+  background-size: 100% 100%, 122px 122px, 100% 100%;
+  box-shadow: inset 0 0 0 1px rgba(248,238,207,.34), 0 8px 16px rgba(45,57,35,.13);
+}
+.envelope-curtain {
+  background-color: #76846a;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(244,231,190,.2) 0 1px, transparent 1px 8px, rgba(42,55,34,.11) 8px 11px, transparent 11px 22px),
+    url('/textures/olive-emboss.svg'),
+    linear-gradient(90deg, #869177, #667553 52%, #859076);
+  background-size: 100% 100%, 114px 114px, 100% 100%;
+  box-shadow: inset 0 0 0 1px rgba(239,224,181,.45), 0 0 14px rgba(45,57,35,.15);
+}
+.embossed-invitation-card {
+  background-color: #fbf4e9;
+  background-image: radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.68), transparent 64%),
+    url('/textures/olive-emboss.svg');
+  background-size: 100% 100%, 145px 145px;
+  box-shadow: inset 0 0 0 1px rgba(201,162,39,.27), 0 8px 17px rgba(54,42,18,.16);
+}
+.seal-scallop {
+  background: radial-gradient(circle at 35% 28%, #fbe3d3, #efcbb9 58%, #dda995 100%);
+  box-shadow: inset 0 1px 0 rgba(255,250,235,.85), inset 0 -3px 6px rgba(128,78,56,.16),
+    0 5px 12px rgba(54,42,18,.28);
+}
+.paper-flourish { stroke: #b18a23; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.embroidered-footer {
+  background-color: #e9e9d9;
+  background-image: linear-gradient(rgba(233,233,217,.86), rgba(233,233,217,.88)),
+    url('/textures/olive-emboss.svg');
+  background-size: 100% 100%, 235px 235px;
 }
 .paper-grain::after {
   content: '';

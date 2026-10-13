@@ -30,8 +30,6 @@ export interface RsvpInput {
      * @maximum 6
      */
   guests: number;
-  /** @maxLength 500 */
-  message?: string;
   /** @maxLength 200 */
   website: string;
 }

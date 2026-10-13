@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { setBaseUrl } from '@workspace/api-client-react';
-import { MotionConfig } from 'framer-motion';
+import { MotionConfig, motion, useReducedMotion } from 'framer-motion';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -25,6 +25,7 @@ function Invitation() {
   });
   const [opened, setOpened] = useState(false);
   const [musicOn, setMusicOn] = useState(false);
+  const reduceMotion = useReducedMotion();
   const audioRef = useRef<{ context: AudioContext; gain: GainNode } | null>(null);
   const trackRef = useRef<HTMLAudioElement | null>(null);
   const c = invitationConfig.copy;
@@ -117,15 +118,23 @@ function Invitation() {
         {musicOn ? <Volume2 size={18}/> : <VolumeX size={18}/>}
       </button>
       <EnvelopeIntro language={language} opened={opened} onOpen={() => setOpened(true)} onFirstGesture={startMusic}/>
-      <main dir={language === 'ur' ? 'rtl' : 'ltr'} aria-hidden={!opened} inert={!opened} className={`relative ${language === 'ur' ? 'urdu-copy' : ''}`}>
-        <Hero language={language}/>
+      <motion.main
+        dir={language === 'ur' ? 'rtl' : 'ltr'}
+        aria-hidden={!opened}
+        inert={!opened}
+        initial={{ opacity: 0, scale: 0.985 }}
+        animate={opened ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.985 }}
+        transition={{ duration: reduceMotion ? 0.4 : 0.72, delay: opened && !reduceMotion ? 0.1 : 0, ease: [0.22, 1, 0.36, 1] }}
+        className={`relative z-[1] ${language === 'ur' ? 'urdu-copy' : ''}`}
+      >
+        <Hero language={language} opened={opened}/>
         <ScratchReveal language={language}/>
         <Countdown language={language}/>
         <ProgramTimeline language={language}/>
         <VenueDetails language={language}/>
         <div className="mx-8 h-px bg-gradient-to-r from-transparent via-[#c9a227]/50 to-transparent"/>
         <RsvpForm language={language}/>
-        <footer className="relative overflow-hidden bg-[#e9e9d9] px-8 pb-[max(32px,env(safe-area-inset-bottom))] pt-12 text-center">
+        <footer className="embroidered-footer relative overflow-hidden px-8 pb-[max(32px,env(safe-area-inset-bottom))] pt-12 text-center">
           <Botanical className="absolute -bottom-8 start-[-20px] w-28 opacity-30" mirrored={language === 'ur'} />
           <Botanical className="absolute -bottom-8 end-[-20px] w-28 opacity-30" mirrored={language !== 'ur'} />
           <p className="font-editorial text-[23px] italic text-[#3e4a32]">{c.celebrationTitle[language]}</p>
@@ -133,7 +142,7 @@ function Invitation() {
           <p className="mt-4 font-display text-[40px] leading-none text-[#3e4a32]">{c.coupleFooter[language]}</p>
           <p className="mt-5 text-[11px] tracking-[.16em] text-[#3e4a32]">{c.footer[language]}</p>
         </footer>
-      </main>
+      </motion.main>
     </div>
   </ErrorBoundary>;
 }
