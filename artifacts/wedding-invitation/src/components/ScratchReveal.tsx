@@ -287,13 +287,13 @@ export function ScratchReveal({ language }: { language: Language }) {
   return (
     <section id="scratch" data-testid="section-date-reveal" className="relative px-7 py-16 text-center">
       <div aria-hidden="true" className="ornament-divider text-[17px]">❧</div>
-      <p className={`small-caps-label mt-5 text-[12px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>{copy.scratchTitle[language]}</p>
-      <p className={`mx-auto mt-2 max-w-[290px] text-[17px] text-[#62554d] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{copy.scratchHint[language]}</p>
+      <p className={`small-caps-label mt-5 text-[14px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>{copy.scratchTitle[language]}</p>
+      <p className={`mx-auto mt-2 max-w-[310px] text-[18px] leading-relaxed text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{copy.scratchHint[language]}</p>
       <div className="relative mx-auto mt-7 flex h-[220px] w-full max-w-[300px] items-center justify-center">
         <div className="absolute inset-0 flex flex-col items-center justify-center rounded-[46%] border border-[#c9a227]/35 bg-[#f7eadb] px-6 shadow-[inset_0_0_0_7px_rgba(201,162,39,.08)]">
-          <span className={`small-caps-label text-[12px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>{copy.revealed[language]}</span>
-          <strong className="font-editorial mt-2 text-[24px] leading-tight text-[#3e4a32]">{copy.date[language]}</strong>
-          <span className="mt-1 text-[15px] italic text-[#3e4a32]">{copy.time[language]}</span>
+          <span className={`small-caps-label text-[14px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>{copy.revealed[language]}</span>
+          <strong className="font-editorial mt-2 text-[25px] leading-tight text-[#3e4a32]">{copy.date[language]}</strong>
+          <span className="mt-1 text-[17px] italic text-[#3e4a32]">{copy.time[language]}</span>
         </div>
         <canvas
           ref={canvasRef}

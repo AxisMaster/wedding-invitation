@@ -12,7 +12,7 @@ import { ScratchReveal } from './components/ScratchReveal';
 import { Countdown } from './components/Countdown';
 import { ProgramTimeline } from './components/ProgramTimeline';
 import { VenueDetails } from './components/VenueDetails';
-import { RsvpForm } from './components/RsvpForm';
+import { QuranVerse } from './components/QuranVerse';
 import { LanguageControl } from './components/LanguageControl';
 import { Botanical } from './components/Botanical';
 import { invitationConfig, type Language } from './invitation.config';
@@ -133,14 +133,14 @@ function Invitation() {
         <ProgramTimeline language={language}/>
         <VenueDetails language={language}/>
         <div className="mx-8 h-px bg-gradient-to-r from-transparent via-[#c9a227]/50 to-transparent"/>
-        <RsvpForm language={language}/>
+        <QuranVerse language={language}/>
         <footer className="embroidered-footer relative overflow-hidden px-8 pb-[max(32px,env(safe-area-inset-bottom))] pt-12 text-center">
           <Botanical className="absolute -bottom-8 start-[-20px] w-28 opacity-30" mirrored={language === 'ur'} />
           <Botanical className="absolute -bottom-8 end-[-20px] w-28 opacity-30" mirrored={language !== 'ur'} />
-          <p className="font-editorial text-[23px] italic text-[#3e4a32]">{c.celebrationTitle[language]}</p>
-          <p className={`mx-auto mt-3 max-w-[290px] text-[16px] leading-relaxed text-[#62564e] ${language === 'ur' ? '' : 'italic'}`}>{c.celebration[language]}</p>
-          <p className="mt-4 font-display text-[40px] leading-none text-[#3e4a32]">{c.coupleFooter[language]}</p>
-          <p className="mt-5 text-[11px] tracking-[.16em] text-[#3e4a32]">{c.footer[language]}</p>
+          <p className="font-editorial text-[25px] text-[#3e4a32]">{c.celebrationTitle[language]}</p>
+          <p className={`mx-auto mt-3 max-w-[330px] text-[18px] leading-relaxed text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{c.celebration[language]}</p>
+          <p className={`mt-5 font-display text-[clamp(30px,9vw,42px)] leading-tight text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.coupleFooter[language]}</p>
+          <p className="mt-5 text-[15px] text-[#3e4a32]">{c.footer[language]}</p>
         </footer>
       </motion.main>
     </div>

@@ -150,6 +150,9 @@ body {
   min-height: 100dvh;
   color: var(--ink);
   font-family: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.55;
   background:
     radial-gradient(ellipse at 15% 8%, rgba(255,248,238,.75), transparent 32rem),
     radial-gradient(ellipse at 85% 75%, rgba(220,167,145,.38), transparent 34rem),
@@ -217,19 +220,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: inset 0 0 0 1px rgba(248,238,207,.34), 0 8px 16px rgba(45,57,35,.13);
 }
 .envelope-curtain {
-  background-color: #76846a;
+  background-color: #ead5bf;
   background-image:
-    repeating-linear-gradient(90deg, rgba(244,231,190,.2) 0 1px, transparent 1px 8px, rgba(42,55,34,.11) 8px 11px, transparent 11px 22px),
-    url('/textures/olive-emboss.svg'),
-    linear-gradient(90deg, #869177, #667553 52%, #859076);
-  background-size: 100% 100%, 114px 114px, 100% 100%;
-  box-shadow: inset 0 0 0 1px rgba(239,224,181,.45), 0 0 14px rgba(45,57,35,.15);
+    repeating-linear-gradient(90deg, rgba(255,250,239,.44) 0 2px, transparent 2px 8px, rgba(135,98,48,.08) 8px 11px, transparent 11px 21px),
+    url('/textures/antique-gold-emboss.svg'),
+    linear-gradient(90deg, #ddbea0 0%, #f4dfc8 20%, #ead2b8 49%, #f6e4d1 76%, #d8b999 100%);
+  background-size: 100% 100%, 126px 126px, 100% 100%;
+  box-shadow: inset 0 0 0 1px rgba(255,248,229,.75), inset 0 0 20px rgba(120,80,38,.08), 0 0 14px rgba(45,57,35,.15);
 }
 .embossed-invitation-card {
   background-color: #fbf4e9;
   background-image: radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.68), transparent 64%),
-    url('/textures/olive-emboss.svg');
-  background-size: 100% 100%, 145px 145px;
+    url('/textures/antique-gold-emboss.svg');
+  background-size: 100% 100%, 170px 170px;
   box-shadow: inset 0 0 0 1px rgba(201,162,39,.27), 0 8px 17px rgba(54,42,18,.16);
 }
 .seal-scallop {
@@ -264,7 +267,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .form-control::placeholder { color: #74665f; opacity:.82; }
 .leaf-line { stroke: var(--sage); stroke-width: 1.2; fill: none; stroke-linecap:round; stroke-linejoin:round; }
-.urdu-copy { font-family: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif; line-height: 2; }
+.urdu-copy { font-family: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif; line-height: 2.15; }
 .reveal-canvas { touch-action:none; transition: opacity 360ms ease; }
 .intro-pulse { animation: seal-pulse 2.4s ease-in-out infinite; }
 @keyframes seal-pulse { 0%,100% { scale:1; } 52% { scale:1.04; } }

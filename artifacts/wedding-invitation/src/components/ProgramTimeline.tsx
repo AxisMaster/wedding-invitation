@@ -15,7 +15,7 @@ export function ProgramTimeline({ language }: { language: Language }) {
       <div className="relative z-[1] text-center">
         <div className="ornament-divider text-[17px]">❧</div>
         <h2 className="mt-4 font-editorial text-[30px] text-[#3e4a32]">{copy.programTitle[language]}</h2>
-        <p className={`mx-auto mt-2 max-w-[300px] text-[16px] text-[#62564e] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>
+        <p className={`mx-auto mt-2 max-w-[330px] text-[18px] leading-relaxed text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>
           {copy.programIntro[language]}
         </p>
       </div>
@@ -52,16 +52,16 @@ export function ProgramTimeline({ language }: { language: Language }) {
                 <Heart size={13} fill="#6f7f5b" strokeWidth={1.4} />
               </span>
               <div className="rounded-2xl border border-[#6f7f5b]/20 bg-[#fffaf3]/85 px-4 py-3 shadow-[0_6px_18px_rgba(62,74,50,.07)]">
-                <time dateTime={event.datetime} className="text-start text-[13px] tracking-wide text-[#3e4a32]">
+                <time dateTime={event.datetime} className="text-start text-[15px] tracking-wide text-[#3e4a32]">
                   {date}<span aria-hidden="true"> · </span>{time}
                 </time>
                 <div className="mt-1.5 flex items-start gap-2.5 text-start">
                   <Icon aria-hidden="true" className="mt-1 shrink-0 text-[#6f7f5b]" size={17} strokeWidth={1.6} />
                   <div>
-                    <h3 className={`font-editorial text-[18px] text-[#3a2f2a] ${language === 'ur' ? 'urdu-copy' : ''}`}>
+                    <h3 className={`font-editorial text-[21px] text-[#3a2f2a] ${language === 'ur' ? 'urdu-copy' : ''}`}>
                       {event.title[language]}
                     </h3>
-                    <p className={`mt-1 text-[14px] leading-relaxed text-[#62564e] ${language === 'ur' ? 'urdu-copy' : ''}`}>
+                    <p className={`mt-1 text-[16px] leading-relaxed text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : ''}`}>
                       {event.description[language]}
                     </p>
                   </div>

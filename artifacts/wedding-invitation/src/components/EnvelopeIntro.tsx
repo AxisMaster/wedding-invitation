@@ -55,7 +55,7 @@ export function EnvelopeIntro({ language, onOpen, onFirstGesture, opened }: Enve
       onOpen();
       return;
     }
-    window.setTimeout(onOpen, returnVisit ? 400 : 1950);
+    window.setTimeout(onOpen, returnVisit ? 400 : 1150);
   };
 
   const skipOpening = () => {
@@ -94,13 +94,13 @@ export function EnvelopeIntro({ language, onOpen, onFirstGesture, opened }: Enve
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: reduce ? 0.4 : 0.55 }}
+          transition={{ duration: reduce ? 0.4 : 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="paper-grain embossed-green-paper relative flex min-h-[100dvh] w-full max-w-[480px] flex-col items-center justify-center overflow-hidden px-8 pt-[max(36px,env(safe-area-inset-top))] pb-[max(36px,env(safe-area-inset-bottom))] text-center">
             <Botanical className="absolute start-[-25px] top-[12%] w-32 opacity-35" mirrored={language === 'ur'} />
             <Botanical className="absolute bottom-[10%] end-[-30px] w-36 opacity-30" mirrored={language !== 'ur'} />
-            <p className={`relative z-10 mb-7 text-[15px] italic tracking-[.12em] text-[#fbf4e9] ${language === 'ur' ? 'urdu-copy' : ''}`}>
-              {copy.envelopeHint[language]}
+            <p lang="ar" dir="rtl" className="relative z-10 mb-6 text-[23px] leading-[2] text-[#f6e7c1]">
+              {invitationConfig.quran.bismillah[language]}
             </p>
             <button
               type="button"
@@ -111,54 +111,46 @@ export function EnvelopeIntro({ language, onOpen, onFirstGesture, opened }: Enve
               className="relative z-10 w-full max-w-[300px] focus-visible:outline-offset-8"
             >
               <motion.div
-                className="embossed-envelope relative aspect-[.68] overflow-visible rounded-[3px]"
-                style={{ perspective: 1200 }}
-                animate={opening && !reduce ? { x: [0, -2, 3, -2, 0], y: [0, 1, -1, 1, 0] } : {}}
+                className="embossed-envelope relative aspect-[.68] overflow-visible rounded-[4px]"
+                style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
               >
                 <div aria-hidden="true" className="pointer-events-none absolute inset-[9px] z-[2] border border-[#efe2b6]/45" />
                 <div aria-hidden="true" className="pointer-events-none absolute inset-y-[8%] start-1/2 z-[3] w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-[#eee0b1]/40 to-transparent" />
-                <div aria-hidden="true" className="absolute inset-0 overflow-hidden opacity-40">
+                <div aria-hidden="true" className="absolute inset-0 overflow-hidden opacity-25">
                   <Botanical className="absolute bottom-0 start-2 w-24" mirrored={language === 'ur'} />
                   <Botanical className="absolute bottom-0 end-2 w-24" mirrored={language !== 'ur'} />
                 </div>
                 <motion.div
                   aria-hidden="true"
-                  className="envelope-curtain pointer-events-none absolute inset-y-0 start-0 z-[8] w-[25%] border-e border-[#d8c486]/50"
+                  className="envelope-curtain pointer-events-none absolute inset-y-0 start-0 z-[8] w-1/2 border-e border-[#c9a227]/70"
                   initial={false}
-                  animate={opening && !reduce ? { x: language === 'ur' ? '100%' : '-100%', rotateY: language === 'ur' ? 20 : -20, opacity: 0 } : { x: 0, rotateY: 0, opacity: 1 }}
-                  transition={{ duration: .72, delay: .08, ease: [0.22, 1, 0.36, 1] }}
+                  animate={opening && !reduce ? { x: language === 'ur' ? '105%' : '-105%', rotateY: language === 'ur' ? 24 : -24, opacity: 0.12 } : { x: 0, rotateY: 0, opacity: 1 }}
+                  transition={{ duration: .82, delay: .18, ease: [0.22, 1, 0.36, 1] }}
                   style={{ transformOrigin: language === 'ur' ? 'right center' : 'left center', transformStyle: 'preserve-3d' }}
                 />
                 <motion.div
                   aria-hidden="true"
-                  className="envelope-curtain pointer-events-none absolute inset-y-0 end-0 z-[8] w-[25%] border-s border-[#d8c486]/50"
+                  className="envelope-curtain pointer-events-none absolute inset-y-0 end-0 z-[8] w-1/2 border-s border-[#c9a227]/70"
                   initial={false}
-                  animate={opening && !reduce ? { x: language === 'ur' ? '-100%' : '100%', rotateY: language === 'ur' ? -20 : 20, opacity: 0 } : { x: 0, rotateY: 0, opacity: 1 }}
-                  transition={{ duration: .72, delay: .08, ease: [0.22, 1, 0.36, 1] }}
+                  animate={opening && !reduce ? { x: language === 'ur' ? '-105%' : '105%', rotateY: language === 'ur' ? -24 : 24, opacity: 0.12 } : { x: 0, rotateY: 0, opacity: 1 }}
+                  transition={{ duration: .82, delay: .18, ease: [0.22, 1, 0.36, 1] }}
                   style={{ transformOrigin: language === 'ur' ? 'left center' : 'right center', transformStyle: 'preserve-3d' }}
                 />
                 <motion.div
-                  className="embossed-invitation-card absolute inset-x-[9%] bottom-[8%] z-[5] flex h-[76%] flex-col items-center justify-end px-3 pb-[4%]"
-                  animate={opening && !reduce ? { y: '-48%', scale: 2.8, opacity: 0.08 } : { y: 0, scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.45, duration: 1.25, ease: [0.2, 0.7, 0.3, 1] }}
+                  className="embossed-invitation-card absolute inset-x-[8%] bottom-[6%] z-[5] flex h-[88%] flex-col items-center justify-center px-4"
+                  animate={opening && !reduce ? { y: '-13%', scale: 1.035, opacity: 0.82 } : { y: 0, scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.38, duration: .72, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div aria-hidden="true" className="pointer-events-none absolute inset-[9px] border border-[#b18a23]/35" />
-                  <span className={`small-caps-label relative text-[10px] text-[#5b6a4a] ${language === 'ur' ? 'urdu-copy' : ''}`}>{copy.inviteEyebrow[language]}</span>
-                  <span className="relative mt-4 font-display text-[31px] leading-none text-[#3e4a32]">{copy.coupleFooter[language]}</span>
-                  <span aria-hidden="true" className="my-3 h-px w-12 bg-[#c9a227]/75" />
-                  <span className="relative font-editorial text-[12px] text-[#3e4a32]">{copy.date[language]}</span>
-                  <span className={`relative mt-1 text-[12px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{copy.time[language]} · {copy.programTitle[language]}</span>
+                  <span className={`small-caps-label relative text-center text-[13px] leading-relaxed text-[#4b3b2c] ${language === 'ur' ? 'urdu-copy' : ''}`}>{copy.inviteEyebrow[language]}</span>
+                  <span className={`relative mt-5 text-center font-display text-[24px] leading-tight text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>{copy.coupleFooter[language]}</span>
+                  <span aria-hidden="true" className="my-4 h-px w-12 bg-[#c9a227]/75" />
+                  <span className="relative text-center font-editorial text-[15px] leading-relaxed text-[#3e4a32]">{copy.date[language]}</span>
+                  <span className={`relative mt-1 text-[15px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{copy.time[language]} · {copy.programTitle[language]}</span>
                   <svg aria-hidden="true" viewBox="0 0 84 24" className="pointer-events-none absolute top-3 h-6 w-[84px] opacity-65">
                     <path d="M3 20c15-1 20-15 37-14 17-1 22 13 41 14M12 19c1-7 5-11 12-13m48 13c-1-7-5-11-12-13M40 6c-3-5-10-4-10 1 0 4 5 6 10 10 5-4 10-6 10-10 0-5-7-6-10-1Z" fill="none" stroke="#b18a23" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </motion.div>
-                <motion.div
-                  aria-hidden="true"
-                  className="embossed-flap absolute inset-x-0 top-0 z-10 h-[63%] origin-top [clip-path:polygon(0_0,100%_0,50%_100%)]"
-                  animate={opening && !reduce ? { rotateX: 175 } : { rotateX: 0 }}
-                  transition={{ duration: reduce ? 0.25 : 0.7, ease: [0.7, 0, 0.3, 1] }}
-                  style={{ transformStyle: 'preserve-3d', transformOrigin: 'top' }}
-                />
                 <motion.div
                   className={`${opening ? '' : 'intro-pulse'} absolute start-1/2 top-[55%] z-20 flex h-[68px] w-[68px] -translate-x-1/2 items-center justify-center`}
                   animate={opening && !reduce ? { scale: 0.55, opacity: 0 } : {}}
@@ -172,7 +164,7 @@ export function EnvelopeIntro({ language, onOpen, onFirstGesture, opened }: Enve
                       aria-hidden="true"
                       className="absolute start-1/2 top-[55%] z-30 h-[68px] w-[68px] -translate-x-1/2 [clip-path:inset(0_50%_0_0_round_50%)]"
                       initial={{ opacity: 1 }}
-                      animate={{ x: -33, y: 24, rotate: -26, opacity: 0 }}
+                      animate={{ x: language === 'ur' ? 33 : -33, y: 24, rotate: language === 'ur' ? 26 : -26, opacity: 0 }}
                       transition={{ delay: 0.08, duration: 0.5, ease: [0.2, 0.7, 0.3, 1] }}
                     >
                       <SealMark initials={copy.sealInitials[language]} />
@@ -181,7 +173,7 @@ export function EnvelopeIntro({ language, onOpen, onFirstGesture, opened }: Enve
                       aria-hidden="true"
                       className="absolute start-1/2 top-[55%] z-30 h-[68px] w-[68px] -translate-x-1/2 [clip-path:inset(0_0_0_50%_round_50%)]"
                       initial={{ opacity: 1 }}
-                      animate={{ x: 33, y: 24, rotate: 26, opacity: 0 }}
+                      animate={{ x: language === 'ur' ? -33 : 33, y: 24, rotate: language === 'ur' ? -26 : 26, opacity: 0 }}
                       transition={{ delay: 0.08, duration: 0.5, ease: [0.2, 0.7, 0.3, 1] }}
                     >
                       <SealMark initials={copy.sealInitials[language]} />

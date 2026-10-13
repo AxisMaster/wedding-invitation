@@ -2,26 +2,24 @@ export type Language = 'en' | 'ur';
 export type LocalizedText = Readonly<Record<Language, string>>;
 
 const partner1 = {
-  name: { en: 'Aanya Rahman', ur: 'آنیہ رحمان' },
-  shortName: { en: 'Aanya', ur: 'آنیہ' },
+  name: { en: 'Raiyyan Ahmad', ur: 'رایّان احمد' },
+  shortName: { en: 'Raiyyan Ahmad', ur: 'رایّان احمد' },
   parents: {
-    en: 'Daughter of Samira & Imran Rahman',
-    ur: 'سمیرا اور عمران رحمان کی صاحبزادی',
+    en: 'S/O Mr Shamshad Ahmad & Mrs Shabista Ahmed',
+    ur: 'مسٹر شمشاد احمد اور مسز شبستہ احمد کے صاحبزادے',
   },
-  profession: { en: 'Architect', ur: 'معمار' },
 };
 
 const partner2 = {
-  name: { en: 'Zayd Khan', ur: 'زید خان' },
-  shortName: { en: 'Zayd', ur: 'زید' },
+  name: { en: 'Lubna Atique', ur: 'لبنیٰ عتیق' },
+  shortName: { en: 'Lubna Atique', ur: 'لبنیٰ عتیق' },
   parents: {
-    en: 'Son of Farah & Tariq Khan',
-    ur: 'فرح اور طارق خان کے صاحبزادے',
+    en: 'D/O Mr Atique Ahmad & Mrs Kahkashan',
+    ur: 'مسٹر عتیق احمد اور مسز کہکشاں کی صاحبزادی',
   },
-  profession: { en: 'Botanist', ur: 'ماہرِ نباتات' },
 };
 
-const weddingDate = '2027-01-09T19:00:00+05:30';
+const weddingDate = '2026-11-18T20:00:00+05:30';
 const formatting = {
   timeZone: 'Asia/Kolkata',
   westernNumerals: true,
@@ -29,21 +27,12 @@ const formatting = {
 const urduLocale = formatting.westernNumerals ? 'ur-PK-u-nu-latn' : 'ur-PK-u-nu-arab';
 
 const venue = {
-  name: { en: 'Garden Pavilion at Rambagh Palace', ur: 'رام باغ پیلس کا گارڈن پویلین' },
+  name: { en: 'Plaza Palace', ur: 'پلازا پیلس' },
   address: {
-    en: 'Bhawani Singh Road, Rambagh, Jaipur, Rajasthan 302005, India',
-    ur: 'بھوانی سنگھ روڈ، رام باغ، جے پور، راجستھان 302005، بھارت',
+    en: 'Bhagwan Chungi, Pratapgarh, UP',
+    ur: 'بگوان چنگی، پرتاپ گڑھ، اتر پردیش',
   },
-  mapsUrl: 'https://maps.google.com/?q=Rambagh+Palace+Jaipur',
-};
-
-const accommodation = {
-  name: { en: 'Sawai Man Mahal', ur: 'سوائی مان محل' },
-  note: {
-    en: 'A small room block is reserved nearby at Sawai Man Mahal. Please mention our celebration when booking.',
-    ur: 'قریبی سوائی مان محل میں چند کمرے مختص ہیں۔ بکنگ کے وقت ہماری تقریب کا حوالہ دیں۔',
-  },
-  bookingCode: { en: 'AANYAZAYD', ur: 'AANYAZAYD' },
+  mapsUrl: `https://maps.google.com/?q=${encodeURIComponent('Plaza Palace, Bhagwan Chungi, Pratapgarh, UP')}`,
 };
 
 const events = [
@@ -52,23 +41,14 @@ const events = [
     title: { en: 'Walima', ur: 'ولیمہ' },
     datetime: weddingDate,
     description: {
-      en: 'An evening reception with dinner, music, and our loved ones.',
-      ur: 'اپنوں کے ساتھ عشائیے، موسیقی اور خوشی کی ایک شام۔',
+      en: 'Your presence will make our day more special and complete.',
+      ur: 'آپ کی موجودگی ہمارا دن مزید خاص اور مکمل بنا دے گی۔',
     },
     icon: 'dinner',
   },
 ] as const;
 
-const shuttle = {
-  note: {
-    en: 'A complimentary shuttle leaves Jaipur Junction at 4:15 pm and returns after the festivities.',
-    ur: 'مفت شٹل شام 4:15 بجے جے پور جنکشن سے روانہ ہوگی اور تقریب کے بعد واپس آئے گی۔',
-  },
-};
-
-const rsvpDeadline = '2026-12-12T23:59:59+05:30';
 const weddingDateValue = new Date(weddingDate);
-const deadlineValue = new Date(rsvpDeadline);
 const formatTime = (iso: string, locale: string) =>
   new Intl.DateTimeFormat(locale, {
     hour: 'numeric',
@@ -76,6 +56,7 @@ const formatTime = (iso: string, locale: string) =>
     hour12: true,
     timeZone: formatting.timeZone,
   }).format(new Date(iso));
+
 const dateLabel = {
   en: new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
@@ -92,43 +73,27 @@ const dateLabel = {
     timeZone: formatting.timeZone,
   }).format(weddingDateValue),
 };
-const deadlineLabel = {
-  en: new Intl.DateTimeFormat('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'Asia/Kolkata',
-  }).format(deadlineValue),
-  ur: new Intl.DateTimeFormat(urduLocale, {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: formatting.timeZone,
-  }).format(deadlineValue),
-};
-const title = {
-  en: `${partner1.shortName.en} & ${partner2.shortName.en} — Walima Celebration`,
-  ur: `${partner1.shortName.ur} اور ${partner2.shortName.ur} — تقریبِ ولیمہ`,
+
+const eventTitle = {
+  en: `${partner1.name.en} & ${partner2.name.en} — Walima`,
+  ur: `${partner1.name.ur} اور ${partner2.name.ur} — ولیمہ`,
 };
 const eventLocation = {
   en: `${venue.name.en}, ${venue.address.en}`,
   ur: `${venue.name.ur}، ${venue.address.ur}`,
 };
-const eventDescription = {
-  en: `${events[0].title.en} begins at ${formatTime(events[0].datetime, 'en-US')}. ${events[0].description.en} Kindly reply by ${deadlineLabel.en}.`,
-  ur: `${events[0].title.ur} ${formatTime(events[0].datetime, urduLocale)} بجے شروع ہوگا۔ ${events[0].description.ur} براہِ کرم ${deadlineLabel.ur} تک جواب دیں۔`,
-};
+const eventDescription = events[0].description;
 
 export const invitationConfig = {
   meta: {
-    title: { en: 'Aanya & Zayd — Walima Celebration', ur: 'آنیہ اور زید — تقریبِ ولیمہ' },
+    title: eventTitle,
     description: {
-      en: 'With full hearts, Aanya Rahman and Zayd Khan invite you to celebrate their Walima.',
-      ur: 'آنیہ رحمان اور زید خان آپ کو اپنی تقریبِ ولیمہ کی خوشی میں شریک ہونے کی دعوت دیتے ہیں۔',
+      en: `Walima of ${partner1.name.en} and ${partner2.name.en} on 18 November 2026 at ${eventLocation.en}.`,
+      ur: `${partner1.name.ur} اور ${partner2.name.ur} کا ولیمہ 18 نومبر 2026 کو ${eventLocation.ur} میں۔`,
     },
     ogAlt: {
-      en: 'Botanical Walima invitation for Aanya and Zayd',
-      ur: 'آنیہ اور زید کی تقریبِ ولیمہ کا نباتاتی دعوت نامہ',
+      en: 'Raiyyan Ahmad and Lubna Atique Walima invitation',
+      ur: 'رایّان احمد اور لبنیٰ عتیق کے ولیمے کا دعوت نامہ',
     },
   },
   partner1,
@@ -137,21 +102,27 @@ export const invitationConfig = {
   formatting: { ...formatting, urduLocale },
   events,
   venue,
-  shuttle,
-  accommodation,
   music: {
     audioFilePath: '/audio/wedding-theme.mp3',
     placeholder: true,
   },
-  rsvp: {
-    endpointPath: '/api/rsvp',
-    deadline: rsvpDeadline,
-    deadlineLabel,
-  },
   event: {
-    title,
+    title: eventTitle,
     venue: eventLocation,
     description: eventDescription,
+  },
+  quran: {
+    bismillah: { en: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', ur: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ' },
+    arabic: {
+      en: 'وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ',
+      ur: 'وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ',
+    },
+    title: { en: 'A verse on love and mercy', ur: 'محبت اور رحمت کی آیت' },
+    translation: {
+      en: 'And among His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy. Indeed, in that are signs for a people who give thought.',
+      ur: 'اور اُس کی نشانیوں میں سے ہے کہ اُس نے تمہارے لیے تم ہی میں سے جوڑے بنائے تاکہ تم اُن سے سکون پاؤ، اور تمہارے درمیان محبت اور رحمت رکھ دی۔ بے شک اس میں غور کرنے والوں کے لیے نشانیاں ہیں۔',
+    },
+    reference: { en: 'Surah Ar-Rum · 30:21', ur: 'سورۃ الروم · 30:21' },
   },
   copy: {
     language: { en: 'اردو', ur: 'English' },
@@ -160,119 +131,47 @@ export const invitationConfig = {
     skip: { en: 'Skip the opening', ur: 'دعوت کھولیں' },
     tapToOpen: { en: 'Tap the seal to open', ur: 'مہر پر ٹیپ کرکے دعوت کھولیں' },
     openEnvelope: { en: 'Open your invitation', ur: 'اپنا دعوت نامہ کھولیں' },
-    envelopeHint: {
-      en: 'A little something, sealed just for you',
-      ur: 'آپ کے لیے ایک خاص پیغام',
+    inviteEyebrow: { en: 'With the love of our families', ur: 'اپنے خاندانوں کی محبت کے ساتھ' },
+    invitationText: {
+      en: 'With the blessings of Allah and the love of our families, we cordially invite you to the wedding of',
+      ur: 'اللہ کی برکت اور اپنے خاندانوں کی محبت کے ساتھ ہم آپ کو شادی میں شرکت کی دعوت دیتے ہیں',
     },
-    inviteEyebrow: {
-      en: 'Together with our families',
-      ur: 'اپنے خاندانوں کی محبت کے ساتھ',
-    },
-    inviteLine: {
-      en: 'request the pleasure of your company',
-      ur: 'آپ کی شرکت ہمارے لیے باعثِ مسرت ہوگی',
-    },
-    weddingOf: { en: 'at the Walima celebration of', ur: 'کی تقریبِ ولیمہ میں' },
-    heroEyebrow: { en: "We're getting married", ur: 'ہم شادی کر رہے ہیں' },
+    weds: { en: 'Weds', ur: 'کے ساتھ' },
+    partner1Name: partner1.shortName,
+    partner2Name: partner2.shortName,
     parentsA: partner1.parents,
     parentsZ: partner2.parents,
-    professions: {
-      en: `${partner1.shortName.en} · ${partner1.profession.en}  |  ${partner2.shortName.en} · ${partner2.profession.en}`,
-      ur: `${partner1.shortName.ur} · ${partner1.profession.ur}  |  ${partner2.shortName.ur} · ${partner2.profession.ur}`,
-    },
     date: dateLabel,
     time: {
       en: formatTime(weddingDate, 'en-US'),
-      ur: formatTime(weddingDate, 'ur-PK-u-nu-latn'),
+      ur: formatTime(weddingDate, urduLocale),
     },
-    venueShort: { en: 'Rambagh Palace · Jaipur', ur: 'رام باغ پیلس · جے پور' },
-    scroll: { en: 'A day made brighter with you', ur: 'آپ کی موجودگی سے روشن دن' },
-    scratchTitle: { en: 'A date worth uncovering', ur: 'ایک تاریخ جو آپ کی منتظر ہے' },
-    scratchHint: {
-      en: 'Gently brush away the gold to find our day',
-      ur: 'سنہری تہہ ہٹائیں اور ہماری تاریخ دریافت کریں',
-    },
+    venueShort: { en: 'Plaza Palace · Pratapgarh, UP', ur: 'پلازا پیلس · پرتاپ گڑھ، اتر پردیش' },
+    scroll: { en: 'Walima details', ur: 'ولیمے کی تفصیل' },
+    scratchTitle: { en: 'Scratch to reveal', ur: 'کھرچ کر تاریخ دیکھیں' },
+    scratchHint: { en: 'Gently brush away the gold to reveal the Walima date', ur: 'سنہری تہہ ہٹائیں اور ولیمے کی تاریخ دیکھیں' },
     revealDate: { en: 'Reveal the date', ur: 'تاریخ ظاہر کریں' },
-    revealed: { en: 'Our day is', ur: 'ہماری خوشی کا دن ہے' },
+    revealed: { en: 'Walima date', ur: 'ولیمے کی تاریخ' },
     saveDate: { en: 'Save the date', ur: 'تاریخ محفوظ کریں' },
-    countdownTitle: { en: 'Counting Down to Forever', ur: 'ہماری ہمیشہ کی خوشی تک' },
-    days: { en: 'days', ur: 'دن' },
-    hours: { en: 'hours', ur: 'گھنٹے' },
-    minutes: { en: 'minutes', ur: 'منٹ' },
-    seconds: { en: 'seconds', ur: 'سیکنڈ' },
-    pastDate: { en: 'Today is the day', ur: 'آج ہماری شادی کا دن ہے' },
-    married: { en: 'Married', ur: 'شادی شدہ' },
-    programTitle: { en: 'The Walima', ur: 'ولیمہ' },
-    programIntro: {
-      en: 'One evening to gather, dine, and celebrate together.',
-      ur: 'ایک شام، ایک ساتھ جمع ہونے، کھانے اور خوشی منانے کے لیے۔',
-    },
-    venueTitle: { en: 'Find your way to us', ur: 'ہم تک پہنچنے کا راستہ' },
+    countdownTitle: { en: 'Until the Walima', ur: 'ولیمے تک' },
+    days: { en: 'Days', ur: 'دن' },
+    hours: { en: 'Hours', ur: 'گھنٹے' },
+    minutes: { en: 'Minutes', ur: 'منٹ' },
+    seconds: { en: 'Seconds', ur: 'سیکنڈ' },
+    pastDate: { en: 'The Walima is today', ur: 'آج ولیمہ ہے' },
+    married: { en: 'Walima celebrated', ur: 'ولیمہ مبارک' },
+    programTitle: { en: 'Walima', ur: 'ولیمہ' },
+    programIntro: eventDescription,
+    venueTitle: { en: 'Venue', ur: 'مقام' },
     venueName: venue.name,
     venueAddress: venue.address,
     mapLink: { en: 'Open in Maps', ur: 'نقشے میں کھولیں' },
-    mapNote: {
-      en: 'The map link is a placeholder and will be updated before the celebration.',
-      ur: 'نقشے کا لنک عارضی ہے، تقریب سے پہلے تازہ کر دیا جائے گا۔',
-    },
-    shuttleTitle: { en: 'A little help getting there', ur: 'آمدورفت کی سہولت' },
-    shuttleText: shuttle.note,
-    stayTitle: { en: 'Staying nearby', ur: 'قریبی قیام' },
-    stayText: accommodation.note,
-    bookingCode: accommodation.bookingCode,
-    copyCode: { en: 'Copy booking code', ur: 'بکنگ کوڈ نقل کریں' },
-    copied: { en: 'Booking code copied', ur: 'بکنگ کوڈ نقل ہوگیا' },
-    rsvpTitle: { en: 'Will you join us?', ur: 'کیا آپ ہمارے ساتھ ہوں گے؟' },
-    rsvpIntro: {
-      en: `Kindly reply by ${deadlineLabel.en}. We cannot wait to celebrate with you.`,
-      ur: `براہِ کرم ${deadlineLabel.ur} تک جواب دیں۔ آپ کے ساتھ خوشی منانے کے منتظر ہیں۔`,
-    },
-    fullName: { en: 'Your full name', ur: 'آپ کا پورا نام' },
-    attendance: { en: 'Your reply', ur: 'آپ کا جواب' },
-    yes: { en: 'Joyfully accepts', ur: 'خوشی سے شرکت کریں گے' },
-    no: { en: 'Regretfully declines', ur: 'معذرت کے ساتھ شرکت نہیں کر سکیں گے' },
-    maybe: { en: 'Replying soon', ur: 'جلد جواب دیں گے' },
-    guests: { en: 'How many in your party?', ur: 'آپ کے ساتھ کتنے افراد ہوں گے؟' },
-    submit: { en: 'Send our reply', ur: 'اپنا جواب بھیجیں' },
-    sending: { en: 'Sending your reply', ur: 'آپ کا جواب بھیجا جا رہا ہے' },
-    requiredName: { en: 'Please enter your full name.', ur: 'براہِ کرم اپنا پورا نام درج کریں۔' },
-    requiredAttendance: { en: 'Please choose a reply.', ur: 'براہِ کرم اپنا جواب منتخب کریں۔' },
-    validationError: {
-      en: 'Please check the highlighted details and try again.',
-      ur: 'براہِ کرم نمایاں تفصیل درست کرکے دوبارہ کوشش کریں۔',
-    },
-    submitError: {
-      en: 'We could not send your reply just now. Please try again.',
-      ur: 'ابھی جواب بھیجا نہیں جا سکا۔ براہِ کرم دوبارہ کوشش کریں۔',
-    },
-    thankYou: {
-      en: 'Your reply has found its way to us. Thank you.',
-      ur: 'آپ کا جواب ہم تک پہنچ گیا۔ بہت شکریہ۔',
-    },
-    storedNote: { en: 'Your response has been saved.', ur: 'آپ کا جواب محفوظ ہوگیا ہے۔' },
-    demoNote: {
-      en: 'Thank you — your reply was received. The hosts still need to configure RSVP storage.',
-      ur: 'شکریہ — آپ کا جواب موصول ہوا۔ میزبانوں کو ابھی جواب محفوظ کرنے کی سہولت ترتیب دینی ہے۔',
-    },
-    privacyNote: {
-      en: 'Your details are used only by the hosts to plan the wedding.',
-      ur: 'آپ کی تفصیلات صرف میزبان شادی کی منصوبہ بندی کے لیے استعمال کریں گے۔',
-    },
-    celebration: {
-      en: "We can't wait to celebrate with you",
-      ur: 'ہم آپ کے ساتھ خوشی منانے کے منتظر ہیں',
-    },
-    footer: { en: 'Made with love · Jaipur, India', ur: 'محبت سے · جے پور، بھارت' },
-    coupleFooter: {
-      en: `${partner1.shortName.en} & ${partner2.shortName.en}`,
-      ur: `${partner1.shortName.ur} اور ${partner2.shortName.ur}`,
-    },
+    celebrationTitle: { en: 'Walima', ur: 'ولیمہ' },
+    celebration: eventDescription,
+    coupleFooter: { en: `${partner1.name.en} & ${partner2.name.en}`, ur: `${partner1.name.ur} اور ${partner2.name.ur}` },
+    footer: { en: '18 November 2026 · Pratapgarh, UP', ur: '18 نومبر 2026 · پرتاپ گڑھ، اتر پردیش' },
     loadingCountdown: { en: 'Preparing the countdown', ur: 'الٹی گنتی تیار ہو رہی ہے' },
-    honeypotLabel: { en: 'Leave this field empty', ur: 'اس خانے کو خالی چھوڑیں' },
-    sealInitials: { en: 'A & Z', ur: 'آ & ز' },
-    nameAanya: partner1.shortName,
-    nameZayd: partner2.shortName,
-    celebrationTitle: { en: 'Until then, with love', ur: 'تب تک، محبت کے ساتھ' },
+    sealInitials: { en: 'R & L', ur: 'ر + ل' },
   },
 } as const;
 

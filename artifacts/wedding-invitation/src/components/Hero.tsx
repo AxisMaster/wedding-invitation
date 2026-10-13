@@ -34,20 +34,20 @@ export function Hero({ language, opened }: { language: Language; opened: boolean
   return <section data-testid="section-hero" className="relative flex min-h-[790px] flex-col items-center justify-center overflow-hidden px-8 pb-14 pt-24 text-center">
     <Botanical className="absolute start-[-28px] top-16 w-[126px] opacity-55" mirrored={language === 'ur'} />
     <Botanical className="absolute end-[-31px] top-28 w-[118px] opacity-45" mirrored={language !== 'ur'} />
-    <span className={`small-caps-label mb-5 text-[12px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.heroEyebrow[language]}</span>
-    <p className={`max-w-[310px] text-[19px] leading-relaxed text-[#63554d] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{c.inviteLine[language]}</p>
-    <p className="mt-2 text-[17px] text-[#63554d]">{c.weddingOf[language]}</p>
-    <motion.div initial={false} animate={opened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }} transition={{ duration: .85, delay: opened ? .16 : 0, ease: [0.22, 1, 0.36, 1] }} className="relative z-10 my-7">
-      <h1 className="font-display text-[76px] leading-[.92] text-[#3e4a32] sm:text-[84px]">{c.nameAanya[language]}</h1>
-      <span aria-hidden="true" className="my-2 block font-editorial text-[25px] italic text-[#80620f]">&</span>
-      <h2 className="font-display text-[76px] leading-[.92] text-[#3e4a32] sm:text-[84px]">{c.nameZayd[language]}</h2>
+    <p lang="ar" dir="rtl" className="mb-5 text-[24px] leading-[2] text-[#80620f]">{invitationConfig.quran.bismillah[language]}</p>
+    <p className={`max-w-[370px] text-[18px] leading-[1.7] text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.invitationText[language]}</p>
+    <motion.div initial={false} animate={opened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }} transition={{ duration: .85, delay: opened ? .16 : 0, ease: [0.22, 1, 0.36, 1] }} className="relative z-10 my-6">
+      <h1 className={`text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>
+        <span className={`block whitespace-nowrap font-display text-[clamp(48px,14vw,66px)] leading-[1.08] ${language === 'ur' ? 'text-[42px]' : ''}`}>{c.partner1Name[language]}</span>
+        <span className={`my-1 block font-editorial text-[20px] italic leading-relaxed text-[#80620f] ${language === 'ur' ? 'urdu-copy text-[19px]' : ''}`}>{c.weds[language]}</span>
+        <span className={`block whitespace-nowrap font-display text-[clamp(48px,14vw,66px)] leading-[1.08] ${language === 'ur' ? 'text-[42px]' : ''}`}>{c.partner2Name[language]}</span>
+      </h1>
     </motion.div>
-    <p className={`text-[16px] leading-relaxed text-[#5f544c] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{c.parentsA[language]}</p>
-    <p className={`text-[16px] leading-relaxed text-[#5f544c] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{c.parentsZ[language]}</p>
-    <p className={`mt-3 text-[13px] tracking-[.06em] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.professions[language]}</p>
+    <p className={`max-w-[380px] text-[17px] leading-relaxed text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.parentsA[language]}</p>
+    <p className={`mt-1 max-w-[380px] text-[17px] leading-relaxed text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.parentsZ[language]}</p>
     <div className="section-rule" />
-    <p className="font-editorial text-[20px] text-[#3a2f2a]">{c.date[language]}</p>
-    <p className={`mt-1 text-[16px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{c.time[language]} · {c.venueShort[language]}</p>
+    <p className="font-editorial text-[19px] text-[#3a2f2a]">{c.date[language]}</p>
+    <p className={`mt-1 text-[18px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{c.time[language]} · {c.venueShort[language]}</p>
     <GardenFountain opened={opened} />
     <a href="#scratch" data-testid="link-scroll-invitation" aria-label={c.scroll[language]} className="absolute bottom-8 flex flex-col items-center gap-1 text-[13px] tracking-wide text-[#3e4a32]">
       <span>{c.scroll[language]}</span><span aria-hidden="true" className="animate-bounce text-xl">⌄</span>
