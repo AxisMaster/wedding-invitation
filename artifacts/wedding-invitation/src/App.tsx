@@ -45,6 +45,20 @@ function Invitation() {
       const element = document.querySelector<HTMLMetaElement>(selector);
       if (element) element.content = content;
     });
+
+    try {
+      const origin = window.location.origin;
+      if (origin && !origin.includes('localhost')) {
+        const ogImg = document.querySelector<HTMLMetaElement>('meta[property="og:image"]');
+        if (ogImg) ogImg.content = `${origin}/og-banner.jpg`;
+        const ogSecure = document.querySelector<HTMLMetaElement>('meta[property="og:image:secure_url"]');
+        if (ogSecure) ogSecure.content = `${origin}/og-banner.jpg`;
+        const twImg = document.querySelector<HTMLMetaElement>('meta[name="twitter:image"]');
+        if (twImg) twImg.content = `${origin}/og-banner.jpg`;
+      }
+    } catch {
+      // Ignored
+    }
   }, [language]);
   useEffect(() => {
     setBaseUrl(import.meta.env.VITE_API_BASE_URL || null);
