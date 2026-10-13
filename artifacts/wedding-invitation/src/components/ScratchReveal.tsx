@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from 'react';
 import { useReducedMotion } from 'framer-motion';
+import { Calendar } from 'lucide-react';
 import { invitationConfig, type Language } from '../invitation.config';
 
 type Shape = 'heart' | 'petal' | 'sparkle';
@@ -254,33 +255,21 @@ export function ScratchReveal({ language }: { language: Language }) {
     return () => window.clearInterval(interval);
   }, [checkProgress]);
 
-  const downloadCalendar = () => {
+  const openGoogleCalendar = () => {
     const start = new Date(invitationConfig.weddingDate);
-    const end = new Date(start.getTime() + 5 * 60 * 60 * 1000);
-    const stamp = (date: Date) => date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-    const escape = (text: string) =>
-      text.replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\r?\n/g, '\\n');
-    const text = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      `PRODID:-//${invitationConfig.partner1.shortName.en} and ${invitationConfig.partner2.shortName.en}//Invitation//EN`,
-      'BEGIN:VEVENT',
-      `UID:${[invitationConfig.partner1.shortName.en, invitationConfig.partner2.shortName.en].join('-').toLowerCase().replace(/[^a-z0-9-]+/g, '-')}-wedding@invitation.local`,
-      `DTSTAMP:${stamp(new Date())}`,
-      `DTSTART:${stamp(start)}`,
-      `DTEND:${stamp(end)}`,
-      `SUMMARY:${escape(invitationConfig.event.title[language])}`,
-      `LOCATION:${escape(invitationConfig.event.venue[language])}`,
-      `DESCRIPTION:${escape(invitationConfig.event.description[language])}`,
-      'END:VEVENT',
-      'END:VCALENDAR',
-    ].join('\r\n');
-    const url = URL.createObjectURL(new Blob([text], { type: 'text/calendar;charset=utf-8' }));
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = `${[invitationConfig.partner1.shortName.en, invitationConfig.partner2.shortName.en].join('-').toLowerCase().replace(/[^a-z0-9-]+/g, '-')}-wedding.ics`;
-    anchor.click();
-    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    const end = new Date(start.getTime() + 4 * 60 * 60 * 1000);
+    const formatUtc = (d: Date) => d.toISOString().replace(/-|:|\.\d{3}/g, '');
+
+    const title = encodeURIComponent(invitationConfig.event.title[language]);
+    const location = encodeURIComponent(invitationConfig.event.venue[language]);
+    const details = encodeURIComponent(
+      `${invitationConfig.event.description[language]}\n\nVenue: ${invitationConfig.event.venue[language]}\nGoogle Maps: ${invitationConfig.venue.mapsUrl}`
+    );
+    const dates = `${formatUtc(start)}/${formatUtc(end)}`;
+
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+
+    window.open(googleCalendarUrl, '_blank', 'noopener,noreferrer');
     setSaved(true);
   };
 
@@ -329,8 +318,14 @@ export function ScratchReveal({ language }: { language: Language }) {
         </button>
       )}
       {revealed && (
-        <button type="button" data-testid="button-save-date" onClick={downloadCalendar} className="mt-5 rounded-full bg-[#3e4a32] px-6 py-3 text-[15px] tracking-wide text-[#fff8ed] shadow-md hover:bg-[#526447]">
-          {saved ? '✓  ' : ''}{copy.saveDate[language]}
+        <button
+          type="button"
+          data-testid="button-save-date"
+          onClick={openGoogleCalendar}
+          className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#3e4a32] hover:bg-[#526447] px-6 py-3 text-[15px] font-medium tracking-wide text-[#fff8ed] shadow-md transition-all hover:scale-105"
+        >
+          <Calendar size={17} className="text-[#ffd700]" />
+          <span>{saved ? '✓  ' : ''}{copy.saveDate[language]}</span>
         </button>
       )}
     </section>

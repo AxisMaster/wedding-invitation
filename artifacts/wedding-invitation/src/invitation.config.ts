@@ -152,7 +152,7 @@ export const invitationConfig = {
     scratchHint: { en: 'Gently brush away the gold to reveal the Walima date', ur: 'سنہری تہہ ہٹائیں اور ولیمے کی تاریخ دیکھیں' },
     revealDate: { en: 'Reveal the date', ur: 'تاریخ ظاہر کریں' },
     revealed: { en: 'Walima date', ur: 'ولیمے کی تاریخ' },
-    saveDate: { en: 'Save the date', ur: 'تاریخ محفوظ کریں' },
+    saveDate: { en: 'Add to Google Calendar', ur: 'گوگل کیلنڈر میں شامل کریں' },
     countdownTitle: { en: 'Until the Walima', ur: 'ولیمے تک' },
     days: { en: 'Days', ur: 'دن' },
     hours: { en: 'Hours', ur: 'گھنٹے' },
