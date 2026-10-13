@@ -31,26 +31,94 @@ function GardenFountain({ opened }: { opened: boolean }) {
 
 export function Hero({ language, opened }: { language: Language; opened: boolean }) {
   const c = invitationConfig.copy;
-  return <section data-testid="section-hero" className="relative flex min-h-[790px] flex-col items-center justify-center overflow-hidden px-8 pb-14 pt-24 text-center">
-    <Botanical className="absolute start-[-28px] top-16 w-[126px] opacity-55" mirrored={language === 'ur'} />
-    <Botanical className="absolute end-[-31px] top-28 w-[118px] opacity-45" mirrored={language !== 'ur'} />
-    <p lang="ar" dir="rtl" className="mb-5 text-[24px] leading-[2] text-[#80620f]">{invitationConfig.quran.bismillah[language]}</p>
-    <p className={`max-w-[370px] text-[18px] leading-[1.7] text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.invitationText[language]}</p>
-    <motion.div initial={false} animate={opened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }} transition={{ duration: .85, delay: opened ? .16 : 0, ease: [0.22, 1, 0.36, 1] }} className="relative z-10 my-6">
-      <h1 className={`text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : ''}`}>
-        <span className={`block whitespace-nowrap font-display text-[clamp(48px,14vw,66px)] leading-[1.08] ${language === 'ur' ? 'text-[42px]' : ''}`}>{c.partner1Name[language]}</span>
-        <span className={`my-1 block font-editorial text-[20px] italic leading-relaxed text-[#80620f] ${language === 'ur' ? 'urdu-copy text-[19px]' : ''}`}>{c.weds[language]}</span>
-        <span className={`block whitespace-nowrap font-display text-[clamp(48px,14vw,66px)] leading-[1.08] ${language === 'ur' ? 'text-[42px]' : ''}`}>{c.partner2Name[language]}</span>
-      </h1>
-    </motion.div>
-    <p className={`max-w-[380px] text-[17px] leading-relaxed text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.parentsA[language]}</p>
-    <p className={`mt-1 max-w-[380px] text-[17px] leading-relaxed text-[#4a4038] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.parentsZ[language]}</p>
-    <div className="section-rule" />
-    <p className="font-editorial text-[19px] text-[#3a2f2a]">{c.date[language]}</p>
-    <p className={`mt-1 text-[18px] text-[#3e4a32] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{c.time[language]} · {c.venueShort[language]}</p>
-    <GardenFountain opened={opened} />
-    <a href="#scratch" data-testid="link-scroll-invitation" aria-label={c.scroll[language]} className="absolute bottom-8 flex flex-col items-center gap-1 text-[13px] tracking-wide text-[#3e4a32]">
-      <span>{c.scroll[language]}</span><span aria-hidden="true" className="animate-bounce text-xl">⌄</span>
-    </a>
-  </section>;
+  return (
+    <section data-testid="section-hero" className="relative flex min-h-[820px] flex-col items-center justify-center overflow-hidden px-8 pb-16 pt-24 text-center">
+      <Botanical className="absolute start-[-28px] top-14 w-[130px] opacity-50 pointer-events-none" mirrored={language === 'ur'} />
+      <Botanical className="absolute end-[-31px] top-24 w-[122px] opacity-40 pointer-events-none" mirrored={language !== 'ur'} />
+      
+      {/* Bismillah */}
+      <motion.p
+        lang="ar"
+        dir="rtl"
+        className="mb-4 text-[26px] font-normal leading-[2] text-[#8e6e18] drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]"
+        initial={false}
+        animate={opened ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{ duration: 0.85, delay: opened ? 0.1 : 0, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {invitationConfig.quran.bismillah[language]}
+      </motion.p>
+
+      {/* Invitation Eyebrow */}
+      <motion.p
+        className={`max-w-[370px] text-[18px] leading-[1.7] text-[#55473d] ${language === 'ur' ? 'urdu-copy' : ''}`}
+        initial={false}
+        animate={opened ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+        transition={{ duration: 0.85, delay: opened ? 0.18 : 0, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {c.invitationText[language]}
+      </motion.p>
+
+      {/* Couple Names */}
+      <motion.div
+        initial={false}
+        animate={opened ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 0.98 }}
+        transition={{ duration: 0.95, delay: opened ? 0.26 : 0, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 my-6"
+      >
+        <h1 className={`text-[#2d3a24] ${language === 'ur' ? 'urdu-copy' : ''}`}>
+          <span
+            className={`block whitespace-nowrap font-display text-[clamp(48px,14vw,68px)] leading-[1.08] text-[#2d3a24] drop-shadow-[0_2px_4px_rgba(45,58,36,0.12)] ${
+              language === 'ur' ? 'text-[44px]' : ''
+            }`}
+          >
+            {c.partner1Name[language]}
+          </span>
+          <span className="my-2 flex items-center justify-center gap-3">
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#b88f34]/60" />
+            <span className={`font-editorial text-[21px] italic leading-relaxed text-[#937217] ${language === 'ur' ? 'urdu-copy text-[20px]' : ''}`}>
+              {c.weds[language]}
+            </span>
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#b88f34]/60" />
+          </span>
+          <span
+            className={`block whitespace-nowrap font-display text-[clamp(48px,14vw,68px)] leading-[1.08] text-[#2d3a24] drop-shadow-[0_2px_4px_rgba(45,58,36,0.12)] ${
+              language === 'ur' ? 'text-[44px]' : ''
+            }`}
+          >
+            {c.partner2Name[language]}
+          </span>
+        </h1>
+      </motion.div>
+
+      {/* Parents */}
+      <motion.div
+        initial={false}
+        animate={opened ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+        transition={{ duration: 0.85, delay: opened ? 0.35 : 0, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col items-center"
+      >
+        <p className={`max-w-[380px] text-[17px] leading-relaxed text-[#55473d] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.parentsA[language]}</p>
+        <p className={`mt-1 max-w-[380px] text-[17px] leading-relaxed text-[#55473d] ${language === 'ur' ? 'urdu-copy' : ''}`}>{c.parentsZ[language]}</p>
+      </motion.div>
+
+      <div className="section-rule" />
+
+      {/* Date & Time */}
+      <motion.div
+        initial={false}
+        animate={opened ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+        transition={{ duration: 0.85, delay: opened ? 0.42 : 0, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <p className="font-editorial text-[20px] font-medium text-[#3a2f2a]">{c.date[language]}</p>
+        <p className={`mt-1 text-[18px] text-[#4a5a3a] ${language === 'ur' ? 'urdu-copy' : 'italic'}`}>{c.time[language]} · {c.venueShort[language]}</p>
+      </motion.div>
+
+      <GardenFountain opened={opened} />
+
+      <a href="#scratch" data-testid="link-scroll-invitation" aria-label={c.scroll[language]} className="absolute bottom-6 flex flex-col items-center gap-1 text-[13px] tracking-wide text-[#3e4a32] hover:text-[#b88f34] transition-colors">
+        <span>{c.scroll[language]}</span>
+        <span aria-hidden="true" className="animate-bounce text-xl">⌄</span>
+      </a>
+    </section>
+  );
 }

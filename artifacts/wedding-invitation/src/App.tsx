@@ -114,8 +114,16 @@ function Invitation() {
   return <ErrorBoundary>
     <div className="invitation-shell paper-grain relative">
       <LanguageControl language={language} onToggle={toggleLanguage}/>
-      <button type="button" onClick={toggleMusic} aria-pressed={musicOn} aria-label={musicOn ? c.mute[language] : c.unmute[language]} data-testid="button-mute-music" className="fixed z-50 top-[max(12px,env(safe-area-inset-top))] sm:top-[34px] end-[max(14px,calc((100vw-480px)/2+14px))] flex h-11 w-11 items-center justify-center rounded-full border border-[#6f7f5b]/30 bg-[#fbf4e9]/90 text-[#3e4a32] shadow-sm backdrop-blur" title={musicOn ? c.mute[language] : c.unmute[language]}>
-        {musicOn ? <Volume2 size={18}/> : <VolumeX size={18}/>}
+      <button
+        type="button"
+        onClick={toggleMusic}
+        aria-pressed={musicOn}
+        aria-label={musicOn ? c.mute[language] : c.unmute[language]}
+        data-testid="button-mute-music"
+        className="fixed z-50 top-[max(16px,env(safe-area-inset-top))] sm:top-[34px] end-[max(16px,calc((100vw-480px)/2+16px))] flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]/45 bg-[#25321f]/75 hover:bg-[#25321f]/90 text-[#fbf5eb] shadow-[0_4px_16px_rgba(0,0,0,0.3)] backdrop-blur-md transition-all hover:scale-105"
+        title={musicOn ? c.mute[language] : c.unmute[language]}
+      >
+        {musicOn ? <Volume2 size={18} className="text-[#ffd700]" /> : <VolumeX size={18} />}
       </button>
       <EnvelopeIntro language={language} opened={opened} onOpen={() => setOpened(true)} onFirstGesture={startMusic}/>
       <motion.main
@@ -124,7 +132,7 @@ function Invitation() {
         inert={!opened}
         initial={{ opacity: 0, scale: 0.985 }}
         animate={opened ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.985 }}
-        transition={{ duration: reduceMotion ? 0.4 : 0.72, delay: opened && !reduceMotion ? 0.1 : 0, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: reduceMotion ? 0.4 : 0.85, delay: opened && !reduceMotion ? 0.08 : 0, ease: [0.16, 1, 0.3, 1] }}
         className={`relative z-[1] ${language === 'ur' ? 'urdu-copy' : ''}`}
       >
         <Hero language={language} opened={opened}/>

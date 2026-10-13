@@ -194,21 +194,31 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .invitation-shell > main { position: relative; z-index: 1; }
 .embossed-green-paper {
-  background-color: #5b6a4a;
+  background-color: #4a593d;
   background-image:
-    radial-gradient(ellipse at 50% -5%, rgba(243,219,169,.16), transparent 62%),
+    radial-gradient(ellipse at 50% 20%, rgba(255, 235, 185, 0.14), transparent 65%),
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(20, 30, 15, 0.45) 100%),
     url('/textures/olive-emboss.svg'),
-    linear-gradient(148deg, #687755 0%, #586847 52%, #4d5d40 100%);
+    linear-gradient(155deg, #556645 0%, #465538 52%, #38462d 100%);
+  background-size: 100% 100%, 100% 100%, 130px 130px, 100% 100%;
+}
+.gatefold-panel {
+  background-color: #4c5c3e;
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 45%, rgba(15,22,10,0.32) 100%),
+    url('/textures/olive-emboss.svg'),
+    linear-gradient(155deg, #566847 0%, #48583a 52%, #3a482e 100%);
   background-size: 100% 100%, 124px 124px, 100% 100%;
+  box-shadow: inset 0 0 0 1px rgba(220, 190, 120, 0.38), 0 18px 40px rgba(25, 35, 20, 0.4);
 }
 .embossed-envelope {
-  background-color: #879477;
+  background-color: #4a593d;
   background-image:
-    linear-gradient(145deg, rgba(255,255,255,.22), transparent 44%, rgba(48,61,39,.12)),
+    radial-gradient(ellipse at 50% 10%, rgba(255, 240, 200, 0.16), transparent 60%),
     url('/textures/olive-emboss.svg'),
-    linear-gradient(135deg, #a0a98f, #7b896e);
-  background-size: 100% 100%, 116px 116px, 100% 100%;
-  box-shadow: inset 0 0 0 1px rgba(241,226,184,.5), 0 22px 45px rgba(35,47,29,.34);
+    linear-gradient(155deg, #546545 0%, #465638 52%, #39472e 100%);
+  background-size: 100% 100%, 124px 124px, 100% 100%;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.45), 0 24px 50px rgba(20, 30, 15, 0.42);
 }
 .embossed-flap {
   background-color: #9ca78e;
@@ -220,25 +230,43 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: inset 0 0 0 1px rgba(248,238,207,.34), 0 8px 16px rgba(45,57,35,.13);
 }
 .envelope-curtain {
-  background-color: #ead5bf;
+  background-color: #4a593d;
   background-image:
-    repeating-linear-gradient(90deg, rgba(255,250,239,.44) 0 2px, transparent 2px 8px, rgba(135,98,48,.08) 8px 11px, transparent 11px 21px),
-    url('/textures/antique-gold-emboss.svg'),
-    linear-gradient(90deg, #ddbea0 0%, #f4dfc8 20%, #ead2b8 49%, #f6e4d1 76%, #d8b999 100%);
-  background-size: 100% 100%, 126px 126px, 100% 100%;
-  box-shadow: inset 0 0 0 1px rgba(255,248,229,.75), inset 0 0 20px rgba(120,80,38,.08), 0 0 14px rgba(45,57,35,.15);
+    linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 45%, rgba(15,22,10,0.3) 100%),
+    url('/textures/olive-emboss.svg'),
+    linear-gradient(155deg, #556645 0%, #465538 52%, #38462d 100%);
+  background-size: 100% 100%, 124px 124px, 100% 100%;
+  box-shadow: inset 0 0 0 1px rgba(220, 190, 120, 0.4), 0 12px 30px rgba(25, 35, 20, 0.35);
 }
 .embossed-invitation-card {
-  background-color: #fbf4e9;
-  background-image: radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.68), transparent 64%),
-    url('/textures/antique-gold-emboss.svg');
-  background-size: 100% 100%, 170px 170px;
-  box-shadow: inset 0 0 0 1px rgba(201,162,39,.27), 0 8px 17px rgba(54,42,18,.16);
+  background-color: #fbf5eb;
+  background-image:
+    radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.85), transparent 70%),
+    url('/textures/antique-gold-emboss.svg'),
+    linear-gradient(180deg, #fefaf4 0%, #f9f0e0 100%);
+  background-size: 100% 100%, 150px 150px, 100% 100%;
+  box-shadow: inset 0 0 0 1px rgba(201,162,39,.4), 0 14px 28px rgba(40,30,15,.22);
 }
 .seal-scallop {
-  background: radial-gradient(circle at 35% 28%, #fbe3d3, #efcbb9 58%, #dda995 100%);
-  box-shadow: inset 0 1px 0 rgba(255,250,235,.85), inset 0 -3px 6px rgba(128,78,56,.16),
-    0 5px 12px rgba(54,42,18,.28);
+  background: radial-gradient(circle at 38% 30%, #fff1e5 0%, #f6cfbe 50%, #e8a994 82%, #d58d78 100%);
+  box-shadow:
+    0 16px 36px -4px rgba(32, 22, 12, 0.5),
+    0 6px 14px rgba(35, 25, 12, 0.28),
+    0 0 20px rgba(230, 185, 95, 0.3),
+    inset 0 2px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -3px 5px rgba(150, 75, 50, 0.32);
+}
+.royal-cartouche {
+  background: radial-gradient(circle at 40% 30%, #fff3e8 0%, #f7d3c0 46%, #e9ab96 82%, #d48c77 100%);
+  filter: drop-shadow(0 14px 26px rgba(24, 18, 10, 0.48)) drop-shadow(0 0 14px rgba(220, 180, 90, 0.28));
+}
+.gold-glow {
+  box-shadow: 0 0 24px rgba(201, 162, 39, 0.42), 0 0 8px rgba(201, 162, 39, 0.6);
+}
+.gold-foil-text {
+  background: linear-gradient(135deg, #a67c1e 0%, #f7e6a7 35%, #d4af37 60%, #996515 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .paper-flourish { stroke: #b18a23; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .embroidered-footer {
@@ -269,8 +297,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .leaf-line { stroke: var(--sage); stroke-width: 1.2; fill: none; stroke-linecap:round; stroke-linejoin:round; }
 .urdu-copy { font-family: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif; line-height: 2.15; }
 .reveal-canvas { touch-action:none; transition: opacity 360ms ease; }
-.intro-pulse { animation: seal-pulse 2.4s ease-in-out infinite; }
-@keyframes seal-pulse { 0%,100% { scale:1; } 52% { scale:1.04; } }
+.intro-pulse { animation: seal-pulse 2.6s ease-in-out infinite; }
+@keyframes seal-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 14px 26px rgba(24, 18, 10, 0.48)) drop-shadow(0 0 10px rgba(220, 180, 90, 0.25)); }
+  50% { transform: translate(-50%, -50%) scale(1.035); filter: drop-shadow(0 18px 32px rgba(24, 18, 10, 0.55)) drop-shadow(0 0 18px rgba(220, 180, 90, 0.45)); }
+}
+@keyframes sparkle-float {
+  0% { transform: translate(0, 0) scale(0); opacity: 0; }
+  25% { opacity: 1; transform: translate(var(--tw-translate-x), var(--tw-translate-y)) scale(1.2); }
+  100% { opacity: 0; transform: translate(calc(var(--tw-translate-x) * 1.5), calc(var(--tw-translate-y) - 50px)) scale(0.2); }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
 }
